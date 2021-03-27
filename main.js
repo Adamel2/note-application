@@ -1,15 +1,25 @@
-let counter = 1;
-function addNote() {
-  let someNote = document.getElementById("content-add").value;
+let counter = 1; //counter for list item -> id
+function addNote(event) {
+
+    event.preventDefault()
+
+  let newNote = document.getElementById("content-add").value;
   let date = document.getElementById("date-input").value;
   let time = document.getElementById("time-input").value;
-  console.log(typeof new Date().getTime());
   let fullDate = Date.parse(date + " " + time);
-  console.log(typeof fullDate);
-  if (someNote != "" && fullDate >= new Date().getTime() && fullDate != null) {
+  //Validation
+  if(newNote === "")
+  {
+      alert("Please enter your task details!");
+  }else if(fullDate < new Date().getTime()){
+    alert("Please enter correct date !");
+
+  }else if (fullDate === null){
+    alert("The date is empty!");
+  }else if (newNote != "" && fullDate >= new Date().getTime() && fullDate != null) {
     localStorage.setItem(
       counter,
-      JSON.stringify({ date: fullDate, title: someNote.toString() })
+      JSON.stringify({ date: fullDate, title: newNote.toString() })
     );
     document.getElementById(
       "list"
@@ -24,40 +34,17 @@ function addNote() {
     }> <button id=${counter} type="button" class="btn btn-warning btn-add btn-place" onclick="removeItemFromUnOrderList(this.id)"}>
                 <span class="add-note">X</span>
             </button></li>`;
-
-    $("#click-add").click(function () {
-      $(".notify").toggleClass("active");
-      $("#notifyType").toggleClass("success");
-
-      setTimeout(function () {
-        $(".notify").removeClass("active");
-        $("#notifyType").removeClass("success");
-      }, 2000);
-    });
-
-    $("#failure").click(function () {
-      $(".notify").addClass("active");
-      $("#notifyType").addClass("failure");
-
-      setTimeout(function () {
-        $(".notify").removeClass("active");
-        $("#notifyType").removeClass("failure");
-      }, 2000);
-    });
+    document.getElementById("content-add").value = ``;
+    
 
     counter++;
-    setTimeout(() => {
-      $(function () {
-        $("#click-add").focus();
-      });
-    }, 1);
   }
-  document.getElementById("content-add").value = ``;
 }
-
+//clear Local Storage
 function clearSession() {
   localStorage.clear();
 }
+//remove Item by list id;
 function removeItemFromUnOrderList(id) {
   localStorage.removeItem(id);
   document.getElementById(id).remove();

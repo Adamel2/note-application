@@ -1,0 +1,137 @@
+body {
+  width: auto;
+}
+.navbar {
+  background-color: rgb(254, 222, 79);
+}
+
+h1 {
+  font-family: Cursive;
+  text-align: center;
+  margin: 20px;
+  font-size: 100px;
+  font-weight: bolder;
+  color: #ffc93c;
+  -webkit-text-fill-color: white;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: rgb(254, 222, 79);
+}
+hr {
+  border-top: none;
+  border-bottom: 20px dotted lightgray;
+  width: 400px;
+}
+.btn {
+  color: black;
+  border: 2px solid lightgray;
+}
+#main-div {
+  margin-left: 15px;
+}
+#content-add {
+  width: 400px;
+  height: 360px;
+  font-size: 20px;
+  font-family: "Times New Roman", Times, serif;
+  position: relative;
+  background-color: rgb(254, 222, 79);
+  background: #fff;
+
+  padding: 15px;
+  border-radius: 7px;
+  box-shadow: 0 1px 5px rgb(138, 137, 137);
+  resize: none;
+  border: 2px solid #a2d5f2;
+  border-radius: 20px;
+  outline: none !important;
+}
+.note-container {
+  text-align: center;
+}
+#click-add {
+    position: relative;
+    top:30%;
+  background: #f5ba13;
+  color: #fff;
+  border: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: 0.1s;
+}
+.btn-add {
+  width: 60px;
+  height: 60px;
+  border-radius: 100px;
+  text-align: center;
+  color: #fff;
+  padding: auto;
+}
+.btn-add > span {
+  font-size: 40px;
+  color: #fff;
+  font-family: Fantasy;
+}
+#list li {
+  opacity: 0;
+}
+#list > li {
+  display: inline-block;
+  position: relative;
+  border: 2px solid lightgrey;
+  width: 250px;
+  height: 250px;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 40px;
+  background-color: rgb(254, 222, 79);
+  box-sizing: content-box;
+  overflow-y: scroll;
+  animation: fadeIn 1s ease-in both;
+}
+.item-div {
+  height: 200px;
+  position: sticky;
+  overflow: scroll;
+}
+
+.btn-place {
+  position: sticky;
+  top: 30px;
+  bottom: 0;
+  float: right;
+}
+.input-date {
+  position: sticky;
+  bottom: 0;
+  float: left;
+  color: #fff;
+
+  background-color: #a2d5f2;
+  border: 2px solid rgb(254, 222, 79);
+  border-radius: 10px;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -20%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+#time-input {
+  margin-top: 10px;
+  display: flex;
+  width: 300px;
+  background-color: rgb(254, 222, 79);
+  border: 2px solid #a2d5f2;
+  border-radius: 20px;
+}
+#date-input {
+  display: flex;
+  width: 300px;
+  background-color: rgb(254, 222, 79);
+  border: 2px solid #a2d5f2;
+  border-radius: 20px;
+}
