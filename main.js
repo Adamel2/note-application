@@ -1,22 +1,23 @@
 let counter = 1; //counter for list item -> id
 function addNote(event) {
-
-    event.preventDefault()
+  event.preventDefault();
 
   let newNote = document.getElementById("content-add").value;
   let date = document.getElementById("date-input").value;
   let time = document.getElementById("time-input").value;
   let fullDate = Date.parse(date + " " + time);
   //Validation
-  if(newNote === "")
-  {
-      alert("Please enter your task details!");
-  }else if(fullDate < new Date().getTime()){
+  if (newNote === "") {
+    alert("Please enter your task details!");
+  } else if (fullDate < new Date().getTime()) {
     alert("Please enter correct date !");
-
-  }else if (fullDate === null){
+  } else if (fullDate === null) {
     alert("The date is empty!");
-  }else if (newNote != "" && fullDate >= new Date().getTime() && fullDate != null) {
+  } else if (
+    newNote != "" &&
+    fullDate >= new Date().getTime() &&
+    fullDate != null
+  ) {
     localStorage.setItem(
       counter,
       JSON.stringify({ date: fullDate, title: newNote.toString() })
@@ -35,7 +36,6 @@ function addNote(event) {
                 <span class="add-note">X</span>
             </button></li>`;
     document.getElementById("content-add").value = ``;
-    
 
     counter++;
   }
