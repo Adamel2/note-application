@@ -20,7 +20,11 @@ function addNote(event) {
     newNote.trim() != "" &&
     localStorage.setItem(
       key,
-      JSON.stringify({ date: fullDate, title: newNote.toString() })
+      JSON.stringify({
+        date: fullDate,
+        title: newNote.toString(),
+        time: new Date().getTime(),
+      })
     );
   document.getElementById(
     "list"
@@ -36,6 +40,43 @@ function addNote(event) {
   document.getElementById("content-add").value = ``;
   Swal.fire("Good job!", "Thank you for adding a new task", "success");
 }
+//Sorting and display item task list
+window.onload = function () {
+  (keys = Object.keys(localStorage)), (indexKey = keys.length);
+  document.getElementById("list").innerHTML = "";
+  const listItems = [];
+  while (indexKey--) {
+    if (
+      JSON.parse(localStorage.getItem(keys[indexKey])).date <
+      new Date().getTime()
+    ) {
+      localStorage.removeItem(keys[indexKey]);
+    } else {
+      listItems.push({
+        id: keys[indexKey],
+        title: JSON.parse(localStorage.getItem(keys[indexKey])).title,
+        date: JSON.parse(localStorage.getItem(keys[indexKey])).date,
+        time: JSON.parse(localStorage.getItem(keys[indexKey])).time,
+      });
+    }
+  }
+  listItems.sort((a, b) => a.time - b.time);
+  listItems.forEach((element) => {
+    document.getElementById("list").innerHTML += `<li id=${
+      element.id
+    } onmouseover="unHidden(this.id)" onmouseout="appendHiddenAttribute(this.id)"><div class="item-div">${
+      element.title
+    } </div><input class="input-date" type="text" disabled value=${
+      new Date(element.date).toLocaleDateString() +
+      "-" +
+      new Date(element.date).toTimeString()
+    }> <button id=${
+      element.id
+    } type="button" class="btn btn-warning btn-add btn-place" onclick="removeItemFromUnOrderList(this.id)" hidden>
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button></li>`;
+  });
+};
 //Clear Local Storage
 function clearStorage() {
   localStorage.clear();
@@ -47,37 +88,6 @@ function removeItemFromUnOrderList(id) {
   localStorage.removeItem(id);
   document.getElementById(id).remove();
 }
-window.onload = function () {
-  // e.preventDefault();
-  (keys = Object.keys(localStorage)), (indexKey = keys.length);
-  document.getElementById("list").innerHTML = "";
-  while (indexKey--) {
-    if (
-      JSON.parse(localStorage.getItem(keys[indexKey])).date <
-      new Date().getTime()
-    ) {
-      localStorage.removeItem(keys[indexKey]);
-    } else {
-      document.getElementById("list").innerHTML += `<li id=${
-        keys[indexKey]
-      } onmouseover="unHidden(this.id)" onmouseout="appendHiddenAttribute(this.id)"><div class="item-div">${
-        JSON.parse(localStorage.getItem(keys[indexKey])).title
-      } </div><input class="input-date" type="text" disabled value=${
-        new Date(
-          JSON.parse(localStorage.getItem(keys[indexKey])).date
-        ).toLocaleDateString() +
-        "-" +
-        new Date(
-          JSON.parse(localStorage.getItem(keys[indexKey])).date
-        ).toTimeString()
-      }> <button id=${
-        keys[indexKey]
-      } type="button" class="btn btn-warning btn-add btn-place" onclick="removeItemFromUnOrderList(this.id)" hidden>
-                      <span class="glyphicon glyphicon-remove"></span>
-                  </button></li>`;
-    }
-  }
-};
 //clear input
 function clearInput() {
   document.getElementById("content-add").value = ``;
