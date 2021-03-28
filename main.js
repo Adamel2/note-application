@@ -6,10 +6,10 @@ function addNote(event) {
   let time = document.getElementById("time-input").value;
   let fullDate = Date.parse(date + " " + time);
   //Validation
-  (newNote === "" || newNote == " ") && alert("Please enter your task details!");{
+  (newNote === "" || newNote.trim() == '') && alert("Please enter your task details!");{
   (fullDate < new Date().getTime()) && alert("Please enter correct date !");
   (fullDate === null) &&  alert("The date is empty!");
-  } ((newNote != "" && newNote !== null) && (fullDate >= new Date().getTime()) && (fullDate != null) ) && 
+  } ((newNote != "" && newNote !== null) && (fullDate >= new Date().getTime()) && (fullDate != null) ) && (newNote.trim() != '') &&
     localStorage.setItem(
       key,
       JSON.stringify({ date: fullDate, title: newNote.toString() })
@@ -80,11 +80,13 @@ function uuidV4() {
     }
   );
 }
+//Remove hidden attribute from button
 function unHidden(id){
     let myItem = document.getElementById(id);
     let buttonChild = myItem.querySelector("button");
     buttonChild.removeAttribute("hidden");
 }
+// add hidden attribute to button
 function appendHiddenAttribute(id){
     let myItem = document.getElementById(id);
     let buttonChild = myItem.querySelector("button");
