@@ -50,7 +50,7 @@ function addNote(event) {
   }
 }
 //Sorting and display item task list
-window.onload = function () {
+window.onload = () => {
   document.getElementById(
     "dateInput"
   ).value = new Date().toISOString().substring(0, 10);
