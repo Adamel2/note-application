@@ -6,15 +6,12 @@ body {
 }
 
 h1 {
-  font-family: Cursive;
+  font-family:"Sugarpie";
   text-align: center;
   margin: 20px;
   font-size: 100px;
   font-weight: bolder;
   color: #ffc93c;
-  -webkit-text-fill-color: white;
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: rgb(254, 222, 79);
 }
 hr {
   border-top: none;
@@ -25,10 +22,10 @@ hr {
   color: black;
   border: 2px solid lightgray;
 }
-#main-div {
+#mainDiv {
   margin-left: 15px;
 }
-#content-add {
+#contentAdd {
   width: 400px;
   height: 360px;
   font-size: 20px;
@@ -47,7 +44,7 @@ hr {
 .note-container {
   text-align: center;
 }
-#click-add {
+#clickAdd {
   display: block;
   position: relative;
   top: 30%;
@@ -57,10 +54,9 @@ hr {
   cursor: pointer;
   transition: 0.1s;
 }
-#clear-note {
+#clearNote {
   top: 50%;
   font-size: 30px;
-
   border: none;
 }
 .btn-add {
@@ -87,7 +83,6 @@ hr {
   border-radius: 40px;
   background-color: rgb(254, 222, 79);
   box-sizing: content-box;
-  overflow-y: scroll;
   animation: fadeIn 1s ease-in both;
 }
 
@@ -108,7 +103,6 @@ hr {
   bottom: 0;
   float: left;
   color: #fff;
-
   background-color: #a2d5f2;
   border: 2px solid rgb(254, 222, 79);
   border-radius: 10px;
@@ -123,7 +117,7 @@ hr {
     transform: translate3d(0, 0, 0);
   }
 }
-#time-input {
+#timeInput {
   margin-top: 10px;
   display: flex;
   width: 300px;
@@ -131,23 +125,28 @@ hr {
   border: 2px solid #a2d5f2;
   border-radius: 20px;
 }
-#date-input {
+#dateInput {
   display: flex;
   width: 300px;
   background-color: rgb(254, 222, 79);
   border: 2px solid #a2d5f2;
   border-radius: 20px;
 }
+/* Title font */
+@font-face {
+    font-family: "Sugarpie";
+    src: url(/assets/fonts/Sugarpie.ttf);
+}
 /* bootstrap glyphicon */
 @font-face {
   font-family: "Glyphicons Halflings";
-  src: url("./assets/fonts/glyphicons-halflings-regular.eot");
-  src: url("./assets/fonts/glyphicons-halflings-regular.eot?#iefix")
+  src: url("/assets/fonts/glyphicons-halflings-regular.eot");
+  src: url("/assets/fonts/glyphicons-halflings-regular.eot?#iefix")
       format("embedded-opentype"),
-    url("./assets/fonts/glyphicons-halflings-regular.woff2") format("woff2"),
-    url("./assets/fonts/glyphicons-halflings-regular.woff") format("woff"),
-    url("./assets/fonts/glyphicons-halflings-regular.ttf") format("truetype"),
-    url("./assets/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular")
+    url("/assets/fonts/glyphicons-halflings-regular.woff2") format("woff2"),
+    url("/assets/fonts/glyphicons-halflings-regular.woff") format("woff"),
+    url("/assets/fonts/glyphicons-halflings-regular.ttf") format("truetype"),
+    url("/assets/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular")
       format("svg");
 }
 .glyphicon {
