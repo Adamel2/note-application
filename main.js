@@ -42,7 +42,9 @@ function addNote(event) {
 }
 //Sorting and display item task list
 window.onload = function () {
-   document.getElementById("date-input").value = new Date().toISOString().substring(0, 10);
+  document.getElementById(
+    "date-input"
+  ).value = new Date().toISOString().substring(0, 10);
   (keys = Object.keys(localStorage)), (indexKey = keys.length);
   document.getElementById("list").innerHTML = "";
   const listItems = [];
