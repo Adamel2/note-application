@@ -42,7 +42,7 @@ function addNote(event) {
       ).toLocaleDateString() +
       "-" +
       new Date(JSON.parse(localStorage.getItem(key)).date).toTimeString()
-    }> <button id=${key} type="button" class="btn btn-warning btn-add btn-place" onclick="removeItemFromUnOrderList(this.id)" hidden>
+    }> <button id=${key} type="button" class="btn btn-warning btn-place" onclick="removeItemFromUnOrderList(this.id)" hidden>
                 <span class="glyphicon glyphicon-remove"></span>
             </button></li>`;
     document.getElementById("contentAdd").value = ``;
@@ -84,7 +84,7 @@ window.onload = function () {
       new Date(element.date).toTimeString()
     }> <button id=${
       element.id
-    } type="button" class="btn btn-warning btn-add btn-place" onclick="removeItemFromUnOrderList(this.id)" hidden>
+    } type="button" class="btn btn-warning btn-place" onclick="removeItemFromUnOrderList(this.id)" hidden>
                         <span class="glyphicon glyphicon-remove"></span>
                     </button></li>`;
   });
