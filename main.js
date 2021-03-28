@@ -1,22 +1,15 @@
 function addNote(event) {
   event.preventDefault();
-  let key = uuidV4();
+  let key = uuidV4(); // UUID ID function
   let newNote = document.getElementById("content-add").value;
   let date = document.getElementById("date-input").value;
   let time = document.getElementById("time-input").value;
   let fullDate = Date.parse(date + " " + time);
   //Validation
-  if (newNote === "") {
-    alert("Please enter your task details!");
-  } else if (fullDate < new Date().getTime()) {
-    alert("Please enter correct date !");
-  } else if (fullDate === null) {
-    alert("The date is empty!");
-  } else if (
-    newNote != "" &&
-    fullDate >= new Date().getTime() &&
-    fullDate != null
-  ) {
+  (newNote === "") && alert("Please enter your task details!");{
+  (fullDate < new Date().getTime()) && alert("Please enter correct date !");
+  (fullDate === null) &&  alert("The date is empty!");
+  } ((newNote != "" && newNote !== null) && (fullDate >= new Date().getTime()) && (fullDate != null) ) && 
     localStorage.setItem(
       key,
       JSON.stringify({ date: fullDate, title: newNote.toString() })
@@ -36,43 +29,42 @@ function addNote(event) {
             </button></li>`;
     document.getElementById("content-add").value = ``;
   }
-}
-//clear Local Storage
+//Clear Local Storage
 function clearSession() {
   localStorage.clear();
 }
-//remove Item by list id;
+//Remove item list by id;
 function removeItemFromUnOrderList(id) {
   localStorage.removeItem(id);
   document.getElementById(id).remove();
 }
-function displayItems() {
+window.onload = function () {
   // e.preventDefault();
-  (keys = Object.keys(localStorage)), (i = keys.length);
-  while (i--) {
-    if (
-      JSON.parse(localStorage.getItem(keys[i])).date <= new Date().getTime()
-    ) {
-      localStorage.removeItem(keys[i]);
+  (keys = Object.keys(localStorage)), (indexKey = keys.length);
+  document.getElementById("list").innerHTML = "";
+  while (indexKey--) {
+    if (JSON.parse(localStorage.getItem(keys[indexKey])).date < new Date().getTime()) {
+      localStorage.removeItem(keys[indexKey]);
     } else {
-      document.getElementById("list").innerHTML = `<li id=${
-        keys[i]
+      document.getElementById("list").innerHTML += `<li id=${
+        keys[indexKey]
       }><div class="item-div">${
-        JSON.parse(localStorage.getItem(keys[i])).title
+        JSON.parse(localStorage.getItem(keys[indexKey])).title
       } </div><input class="input-date" type="text" disabled value=${
         new Date(
-          JSON.parse(localStorage.getItem(keys[i])).date
+          JSON.parse(localStorage.getItem(keys[indexKey])).date
         ).toLocaleDateString() +
         "-" +
-        new Date(JSON.parse(localStorage.getItem(keys[i])).date).toTimeString()
+        new Date(JSON.parse(localStorage.getItem(keys[indexKey])).date).toTimeString()
       }> <button id=${
-        keys[i]
+        keys[indexKey]
       } type="button" class="btn btn-warning btn-add btn-place" onclick="removeItemFromUnOrderList(this.id)"}>
-                      <span class="add-note">X</span>
+                      <span class="glyphicon glyphicon-remove"></span>
                   </button></li>`;
     }
   }
-}
+};
+//clear input
 function clearInput() {
   document.getElementById("content-add").value = ``;
 }
@@ -87,4 +79,3 @@ function uuidV4() {
     }
   );
 }
-window.onload = displayItems();
