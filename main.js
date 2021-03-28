@@ -32,7 +32,7 @@ function addNote(event) {
       "-" +
       new Date(JSON.parse(localStorage.getItem(key)).date).toTimeString()
     }> <button id=${key} type="button" class="btn btn-warning btn-add btn-place" onclick="removeItemFromUnOrderList(this.id)"}>
-                <span class="add-note">X</span>
+                <span class="glyphicon glyphicon-remove"></span>
             </button></li>`;
     document.getElementById("content-add").value = ``;
   }
@@ -72,6 +72,9 @@ function displayItems() {
                   </button></li>`;
     }
   }
+}
+function clearInput() {
+  document.getElementById("content-add").value = ``;
 }
 //Create UUID
 function uuidV4() {
