@@ -1,10 +1,6 @@
-let counter = 1; //counter for list item -> id
 function addNote(event) {
   event.preventDefault();
-
   let key = uuidV4();
-  
-
   let newNote = document.getElementById("content-add").value;
   let date = document.getElementById("date-input").value;
   let time = document.getElementById("time-input").value;
@@ -22,7 +18,7 @@ function addNote(event) {
     fullDate != null
   ) {
     localStorage.setItem(
-        key,
+      key,
       JSON.stringify({ date: fullDate, title: newNote.toString() })
     );
     document.getElementById(
@@ -39,8 +35,6 @@ function addNote(event) {
                 <span class="add-note">X</span>
             </button></li>`;
     document.getElementById("content-add").value = ``;
-
-    counter++;
   }
 }
 //clear Local Storage
@@ -52,31 +46,42 @@ function removeItemFromUnOrderList(id) {
   localStorage.removeItem(id);
   document.getElementById(id).remove();
 }
-function displayItems(){
-    // e.preventDefault();
-    keys = Object.keys(localStorage),
-    i = keys.length;
-    while ( i-- ) {
-        document.getElementById(
-            "list"
-          ).innerHTML = `<li id=${keys[i]}><div class="item-div">${
-            JSON.parse(localStorage.getItem( keys[i] )).title
-          } </div><input class="input-date" type="text" disabled value=${
-            new Date(
-              JSON.parse(localStorage.getItem(keys[i])).date
-            ).toLocaleDateString() +
-            "-" +
-            new Date(JSON.parse(localStorage.getItem(keys[i])).date).toTimeString()
-          }> <button id=${keys[i]} type="button" class="btn btn-warning btn-add btn-place" onclick="removeItemFromUnOrderList(this.id)"}>
+function displayItems() {
+  // e.preventDefault();
+  (keys = Object.keys(localStorage)), (i = keys.length);
+  while (i--) {
+    if (
+      JSON.parse(localStorage.getItem(keys[i])).date <= new Date().getTime()
+    ) {
+      localStorage.removeItem(keys[i]);
+    } else {
+      document.getElementById("list").innerHTML = `<li id=${
+        keys[i]
+      }><div class="item-div">${
+        JSON.parse(localStorage.getItem(keys[i])).title
+      } </div><input class="input-date" type="text" disabled value=${
+        new Date(
+          JSON.parse(localStorage.getItem(keys[i])).date
+        ).toLocaleDateString() +
+        "-" +
+        new Date(JSON.parse(localStorage.getItem(keys[i])).date).toTimeString()
+      }> <button id=${
+        keys[i]
+      } type="button" class="btn btn-warning btn-add btn-place" onclick="removeItemFromUnOrderList(this.id)"}>
                       <span class="add-note">X</span>
                   </button></li>`;
-       
     }
-}
-function uuidV4() {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-      var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-      return v.toString(16);
-    });
   }
+}
+//Create UUID
+function uuidV4() {
+  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
+    /[xy]/g,
+    function (character) {
+      let randomIndex = (Math.random() * 16) | 0,
+        HashId = character == "x" ? randomIndex : (randomIndex & 0x3) | 0x8;
+      return HashId.toString(16);
+    }
+  );
+}
 window.onload = displayItems();
