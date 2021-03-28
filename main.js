@@ -6,7 +6,7 @@ function addNote(event) {
   let time = document.getElementById("time-input").value;
   let fullDate = Date.parse(date + " " + time);
   //Validation
-  (newNote === "") && alert("Please enter your task details!");{
+  (newNote === "" || newNote == " ") && alert("Please enter your task details!");{
   (fullDate < new Date().getTime()) && alert("Please enter correct date !");
   (fullDate === null) &&  alert("The date is empty!");
   } ((newNote != "" && newNote !== null) && (fullDate >= new Date().getTime()) && (fullDate != null) ) && 
@@ -16,7 +16,7 @@ function addNote(event) {
     );
     document.getElementById(
       "list"
-    ).innerHTML += `<li id=${key}><div class="item-div">${
+    ).innerHTML += `<li id=${key} onmouseover="unHidden(this.id)" onmouseout="appendHiddenAttribute(this.id)"><div class="item-div">${
       JSON.parse(localStorage.getItem(key)).title
     } </div><input class="input-date" type="text" disabled value=${
       new Date(
@@ -24,7 +24,7 @@ function addNote(event) {
       ).toLocaleDateString() +
       "-" +
       new Date(JSON.parse(localStorage.getItem(key)).date).toTimeString()
-    }> <button id=${key} type="button" class="btn btn-warning btn-add btn-place" onclick="removeItemFromUnOrderList(this.id)"}>
+    }> <button id=${key} type="button" class="btn btn-warning btn-add btn-place" onclick="removeItemFromUnOrderList(this.id)" hidden>
                 <span class="glyphicon glyphicon-remove"></span>
             </button></li>`;
     document.getElementById("content-add").value = ``;
@@ -32,6 +32,7 @@ function addNote(event) {
 //Clear Local Storage
 function clearSession() {
   localStorage.clear();
+  window.onload();
 }
 //Remove item list by id;
 function removeItemFromUnOrderList(id) {
@@ -48,7 +49,7 @@ window.onload = function () {
     } else {
       document.getElementById("list").innerHTML += `<li id=${
         keys[indexKey]
-      }><div class="item-div">${
+      } onmouseover="unHidden(this.id)" onmouseout="appendHiddenAttribute(this.id)"><div class="item-div">${
         JSON.parse(localStorage.getItem(keys[indexKey])).title
       } </div><input class="input-date" type="text" disabled value=${
         new Date(
@@ -58,7 +59,7 @@ window.onload = function () {
         new Date(JSON.parse(localStorage.getItem(keys[indexKey])).date).toTimeString()
       }> <button id=${
         keys[indexKey]
-      } type="button" class="btn btn-warning btn-add btn-place" onclick="removeItemFromUnOrderList(this.id)"}>
+      } type="button" class="btn btn-warning btn-add btn-place" onclick="removeItemFromUnOrderList(this.id)" hidden>
                       <span class="glyphicon glyphicon-remove"></span>
                   </button></li>`;
     }
@@ -78,4 +79,14 @@ function uuidV4() {
       return HashId.toString(16);
     }
   );
+}
+function unHidden(id){
+    let myItem = document.getElementById(id);
+    let buttonChild = myItem.querySelector("button");
+    buttonChild.removeAttribute("hidden");
+}
+function appendHiddenAttribute(id){
+    let myItem = document.getElementById(id);
+    let buttonChild = myItem.querySelector("button");
+    buttonChild.setAttribute("hidden","");
 }
