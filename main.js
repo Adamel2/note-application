@@ -4,11 +4,11 @@ function addNote(event) {
   let newNote = document.getElementById("contentAdd").value;
   let date = document.getElementById("dateInput").value;
   let time = document.getElementById("timeInput").value;
-  if(time == ''){
-      time = '23:59';
+  if (time == "") {
+    time = "23:59";
   }
   let fullDate = Date.parse(date + " " + time);
-  
+
   //Validation
   (newNote === "" || newNote.trim() == "" || newNote == null) &&
     Swal.fire("Error!", "Please enter your task details!", "error");
@@ -127,5 +127,3 @@ function appendHiddenAttribute(id) {
   let buttonChild = myItem.querySelector("button");
   buttonChild.setAttribute("hidden", "");
 }
-
-
