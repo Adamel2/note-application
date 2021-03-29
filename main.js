@@ -1,9 +1,9 @@
 function addNote(event) {
   event.preventDefault();
   let key = uuidV4(); // UUID ID function
-  let newNote = document.getElementById("contentAdd").value;
-  let date = document.getElementById("dateInput").value;
-  let time = document.getElementById("timeInput").value;
+  let newNote = document.getElementById("content-add").value;
+  let date = document.getElementById("date-input").value;
+  let time = document.getElementById("time-input").value;
   if (time == "") {
     time = "23:59";
   }
@@ -45,14 +45,14 @@ function addNote(event) {
     }> <button id=${key} type="button" class="btn btn-warning btn-place" onclick="removeItemFromUnOrderList(this.id)" hidden>
                 <span class="glyphicon glyphicon-remove"></span>
             </button></li>`;
-    document.getElementById("contentAdd").value = ``;
+    document.getElementById("content-add").value = ``;
     Swal.fire("Good job!", "Thank you for adding a new task", "success");
   }
 }
 //Sorting and display item task list
 window.onload = () => {
   document.getElementById(
-    "dateInput"
+    "date-input"
   ).value = new Date().toISOString().substring(0, 10);
   (keys = Object.keys(localStorage)), (indexKey = keys.length);
   document.getElementById("list").innerHTML = "";
@@ -102,7 +102,7 @@ function removeItemFromUnOrderList(id) {
 }
 //clear input
 function clearInput() {
-  document.getElementById("contentAdd").value = ``;
+  document.getElementById("content-add").value = ``;
 }
 //Create UUID
 function uuidV4() {

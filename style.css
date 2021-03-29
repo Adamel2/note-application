@@ -22,10 +22,10 @@ hr {
   color: black;
   border: 2px solid lightgray;
 }
-#mainDiv {
+#form-div {
   margin-left: 15px;
 }
-#contentAdd {
+#content-add {
   width: 400px;
   height: 360px;
   font-size: 20px;
@@ -44,7 +44,7 @@ hr {
 .note-container {
   text-align: center;
 }
-#clickAdd {
+#click-add {
   display: block;
   position: relative;
   top: 30%;
@@ -54,7 +54,7 @@ hr {
   cursor: pointer;
   transition: 0.1s;
 }
-#clearNote {
+#clear-note {
   top: 50%;
   font-size: 30px;
   border: none;
@@ -150,7 +150,7 @@ hr {
     transform: translate3d(0, 0, 0);
   }
 }
-#timeInput {
+#time-input {
   margin: auto;
   margin-top: 10px;
 
@@ -160,7 +160,7 @@ hr {
   border: 2px solid #a2d5f2;
   border-radius: 20px;
 }
-#dateInput {
+#date-input {
   margin: auto;
   display: flex;
   width: 300px;
