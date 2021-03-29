@@ -173,7 +173,7 @@ hr {
   font-family: "Sugarpie";
   src: url(/assets/fonts/Sugarpie.ttf);
 }
-/* bootstrap glyphicon */
+/* bootstrap 3 glyphicon */
 @font-face {
   font-family: "Glyphicons Halflings";
   src: url("/assets/fonts/glyphicons-halflings-regular.eot");
